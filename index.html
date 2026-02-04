@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roadmap Visual de Estudos</title>
+  <meta name="description" content="Escolha uma área e acompanhe sua trilha de estudos com progresso salvo." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a class="brand" href="#" aria-label="Roadmap">
+        <span class="brand__logo">RM</span>
+        <span class="brand__text">
+          <strong>Roadmap</strong>
+          <small>Trilhas • Progresso • Foco</small>
+        </span>
+      </a>
+
+      <div class="topbar__actions">
+        <button class="btn btn--soft" id="btnReset" type="button">Resetar progresso</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero__left">
+        <span class="pill">📌 Escolha a área e acompanhe a evolução</span>
+        <h1>Roadmap visual de estudos <span class="accent">com progresso</span>.</h1>
+        <p>
+          Selecione uma trilha, marque itens concluídos e acompanhe seu avanço.
+          Tudo fica salvo automaticamente no seu navegador.
+        </p>
+
+        <div class="controls">
+          <div class="control">
+            <label for="area">Área</label>
+            <select id="area"></select>
+          </div>
+
+          <div class="control">
+            <label for="search">Buscar tópico</label>
+            <input id="search" type="search" placeholder="Ex: HTML, Git, API, React..." />
+          </div>
+
+          <div class="control">
+            <label for="filter">Filtro</label>
+            <select id="filter">
+              <option value="todos">Todos</option>
+              <option value="pendentes">Pendentes</option>
+              <option value="concluidos">Concluídos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="progressCard">
+          <div class="progressTop">
+            <div>
+              <strong id="progTitle">Progresso</strong>
+              <div class="muted" id="progMeta">0/0 concluídos</div>
+            </div>
+            <span class="badge" id="progPct">0%</span>
+          </div>
+
+          <div class="bar">
+            <div class="bar__fill" id="barFill" style="width:0%"></div>
+          </div>
+
+          <div class="quickActions">
+            <button class="chip" id="btnMarkAll" type="button">✔ Marcar tudo</button>
+            <button class="chip" id="btnUnmarkAll" type="button">↩ Desmarcar tudo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__right">
+        <div class="panel">
+          <div class="panel__head">
+            <h2 id="roadmapTitle">Trilha</h2>
+            <p class="muted" id="roadmapDesc">—</p>
+          </div>
+
+          <div class="legend">
+            <span class="dot dot--todo"></span><span class="muted">Pendente</span>
+            <span class="dot dot--done"></span><span class="muted">Concluído</span>
+          </div>
+
+          <div class="list" id="list" aria-live="polite"></div>
+
+          <div class="footnote muted">
+            Dica: clique no item para marcar como concluído. O progresso é salvo automaticamente.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>© 2026 Roadmap</span>
+      <span class="muted">Feito por Matheus • HTML/CSS/JS</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
