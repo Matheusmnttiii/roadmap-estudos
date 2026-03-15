@@ -17,9 +17,8 @@
           <small>Trilhas • Progresso • Foco</small>
         </span>
       </a>
-
       <div class="topbar__actions">
-        <button class="btn btn--soft" id="btnReset" type="button">Resetar progresso</button>
+        <button class="btn btn--ghost" id="btnReset" type="button">🔄 Resetar</button>
       </div>
     </div>
   </header>
@@ -27,24 +26,22 @@
   <main class="container">
     <section class="hero">
       <div class="hero__left">
-        <span class="pill">📌 Escolha a área e acompanhe a evolução</span>
-        <h1>Roadmap visual de estudos <span class="accent">com progresso</span>.</h1>
+        <span class="pill">📌 Escolha uma área e acompanhe sua evolução</span>
+        <h1>Roadmap visual de <span class="accent">estudos</span>.</h1>
         <p>
-          Selecione uma trilha, marque itens concluídos e acompanhe seu avanço.
-          Tudo fica salvo automaticamente no seu navegador.
+          Selecione uma trilha, marque itens concluídos e acompanhe seu avanço em tempo real.
+          Tudo fica salvo automaticamente no seu navegador — sem perder progresso!
         </p>
 
         <div class="controls">
           <div class="control">
-            <label for="area">Área</label>
+            <label for="area">Escolha a área</label>
             <select id="area"></select>
           </div>
-
           <div class="control">
             <label for="search">Buscar tópico</label>
             <input id="search" type="search" placeholder="Ex: HTML, Git, API, React..." />
           </div>
-
           <div class="control">
             <label for="filter">Filtro</label>
             <select id="filter">
@@ -58,19 +55,17 @@
         <div class="progressCard">
           <div class="progressTop">
             <div>
-              <strong id="progTitle">Progresso</strong>
+              <strong id="progTitle">Seu progresso</strong>
               <div class="muted" id="progMeta">0/0 concluídos</div>
             </div>
             <span class="badge" id="progPct">0%</span>
           </div>
-
           <div class="bar">
             <div class="bar__fill" id="barFill" style="width:0%"></div>
           </div>
-
           <div class="quickActions">
-            <button class="chip" id="btnMarkAll" type="button">✔ Marcar tudo</button>
-            <button class="chip" id="btnUnmarkAll" type="button">↩ Desmarcar tudo</button>
+            <button class="chip" id="btnMarkAll" type="button">✔️ Marcar tudo</button>
+            <button class="chip" id="btnUnmarkAll" type="button">↩️ Desmarcar</button>
           </div>
         </div>
       </div>
@@ -81,17 +76,96 @@
             <h2 id="roadmapTitle">Trilha</h2>
             <p class="muted" id="roadmapDesc">—</p>
           </div>
-
           <div class="legend">
             <span class="dot dot--todo"></span><span class="muted">Pendente</span>
             <span class="dot dot--done"></span><span class="muted">Concluído</span>
           </div>
-
           <div class="list" id="list" aria-live="polite"></div>
-
-          <div class="footnote muted">
-            Dica: clique no item para marcar como concluído. O progresso é salvo automaticamente.
+          <div class="footnote">
+            💡 <span class="muted">Dica: clique no item para marcar como concluído</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="section__head">
+        <h2>Áreas disponíveis</h2>
+        <p>Escolha uma trilha e comece a estudar com foco</p>
+      </div>
+
+      <div class="areas-grid">
+        <div class="area-card" data-area="frontend">
+          <div class="area-icon">🌐</div>
+          <h3>Front-end (Web)</h3>
+          <p>HTML, CSS, JavaScript e APIs. Construa interfaces modernas.</p>
+          <span class="area-items">6 tópicos</span>
+        </div>
+
+        <div class="area-card" data-area="backend">
+          <div class="area-icon">⚙️</div>
+          <h3>Back-end (Node.js)</h3>
+          <p>Node, Express, APIs REST e Banco de dados.</p>
+          <span class="area-items">6 tópicos</span>
+        </div>
+
+        <div class="area-card" data-area="programacao">
+          <div class="area-icon">💻</div>
+          <h3>Programação (Base)</h3>
+          <p>Fundamentos que servem para qualquer linguagem.</p>
+          <span class="area-items">6 tópicos</span>
+        </div>
+
+        <div class="area-card" data-area="ia">
+          <div class="area-icon">🤖</div>
+          <h3>IA (Introdução)</h3>
+          <p>Conceitos, Python, dados e primeiros modelos.</p>
+          <span class="area-items">6 tópicos</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <h2>Como funciona</h2>
+        <p>Acompanhe seu aprendizado de forma visual e organizada</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Trilhas estruturadas</h3>
+          <p>Cada área tem uma sequência lógica de tópicos para aprender na ordem certa.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">✅</div>
+          <h3>Acompanhamento visual</h3>
+          <p>Barra de progresso em tempo real. Veja seu avanço conforme estuda.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">💾</div>
+          <h3>Salvo automaticamente</h3>
+          <p>Nenhuma conta necessária. Tudo fica no seu navegador, sincronizado.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🔍</div>
+          <h3>Busca e filtro</h3>
+          <p>Encontre tópicos rapidamente e filtre por status (pendente/concluído).</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📱</div>
+          <h3>Responsivo</h3>
+          <p>Funciona perfeitamente em desktop, tablet e smartphone.</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🔄</div>
+          <h3>Personalizável</h3>
+          <p>Marque/desmarque itens, filtre e resete conforme sua necessidade.</p>
         </div>
       </div>
     </section>
@@ -99,13 +173,12 @@
 
   <footer class="footer">
     <div class="container footer__inner">
-      <span>© 2026 Roadmap</span>
-      <span class="muted">Feito por Matheus • HTML/CSS/JS</span>
+      <span>© 2026 Roadmap Estudos</span>
+      <span class="muted">Feito por Matheus</span>
     </div>
   </footer>
 
   <div class="toast" id="toast" hidden></div>
-
   <script src="script.js"></script>
 </body>
 </html>
