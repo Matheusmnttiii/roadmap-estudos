@@ -58,7 +58,7 @@ const KEY = "roadmap_estudos:v1";
 function loadState(){
   try{
     const raw = localStorage.getItem(KEY);
-    if(!raw) return { done:{} }; // done[itemId]=true
+    if(!raw) return { done:{} };
     const parsed = JSON.parse(raw);
     return { done: parsed.done || {} };
   }catch{
@@ -104,7 +104,7 @@ function toast(msg){
   toastEl.textContent = msg;
   toastEl.hidden = false;
   clearTimeout(toast._t);
-  toast._t = setTimeout(()=> toastEl.hidden = true, 1600);
+  toast._t = setTimeout(()=> toastEl.hidden = true, 1800);
 }
 
 function getRoadmap(){
@@ -150,12 +150,12 @@ function render(){
   roadmapTitle.textContent = rm.title;
   roadmapDesc.textContent = rm.desc;
 
-  // progresso total (sempre baseado na trilha inteira)
+  // progresso total
   const total = rm.items.length;
   const doneCount = rm.items.filter(i => isDone(i.id)).length;
   const pct = total ? Math.round((doneCount/total) * 100) : 0;
 
-  progTitle.textContent = "Progresso";
+  progTitle.textContent = "Seu progresso";
   progMeta.textContent = `${doneCount}/${total} concluídos`;
   progPct.textContent = `${pct}%`;
   barFill.style.width = `${pct}%`;
@@ -173,10 +173,19 @@ function render(){
             <div class="item__meta">${i.meta || ""}</div>
           </div>
         </div>
-        <span class="muted">${done ? "Concluído" : "Pendente"}</span>
+        <span class="muted">${done ? "✔️ Concluído" : "⏳ Pendente"}</span>
       </article>
     `;
   }).join("");
+
+  if(visible.length === 0){
+    list.innerHTML = `
+      <div style="text-align:center;padding:20px;color:var(--muted);">
+        <p style="margin:0;font-size:.95rem;">Nenhum item encontrado</p>
+        <p style="margin:4px 0 0;font-size:.85rem;">Tente ajustar a busca ou o filtro</p>
+      </div>
+    `;
+  }
 
   list.querySelectorAll("[data-id]").forEach(el=>{
     el.addEventListener("click", ()=>{
@@ -184,7 +193,7 @@ function render(){
       const next = !isDone(id);
       setDone(id, next);
       render();
-      toast(next ? "Marcado como concluído ✔" : "Desmarcado ↩");
+      toast(next ? "✅ Marcado como concluído" : "↩️ Desmarcado");
     });
   });
 }
@@ -192,6 +201,8 @@ function render(){
 // events
 area.addEventListener("change", ()=>{
   currentId = area.value;
+  search.value = "";
+  filter.value = "todos";
   render();
 });
 
@@ -204,23 +215,36 @@ btnMarkAll.addEventListener("click", ()=>{
   const rm = getRoadmap();
   rm.items.forEach(i => setDone(i.id, true));
   render();
-  toast("Tudo marcado ✔");
+  toast("✅ Tudo marcado como concluído");
 });
 
 btnUnmarkAll.addEventListener("click", ()=>{
   const rm = getRoadmap();
   rm.items.forEach(i => setDone(i.id, false));
   render();
-  toast("Tudo desmarcado ↩");
+  toast("↩️ Tudo desmarcado");
 });
 
 btnReset.addEventListener("click", ()=>{
-  if(confirm("Resetar o progresso de todas as trilhas?")){
+  if(confirm("Tem certeza? Isso vai resetar o progresso de TODAS as trilhas!")){
     state = { done:{} };
     saveState();
     render();
-    toast("Progresso resetado");
+    toast("🔄 Progresso resetado completamente");
   }
+});
+
+// area cards click
+document.querySelectorAll(".area-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const areaId = card.getAttribute("data-area");
+    area.value = areaId;
+    currentId = areaId;
+    search.value = "";
+    filter.value = "todos";
+    render();
+    card.scrollIntoView({ behavior:"smooth" });
+  });
 });
 
 // init
